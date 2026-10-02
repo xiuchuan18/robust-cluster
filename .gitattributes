@@ -1,0 +1,4 @@
+# Preserve exact publication bytes across clones and core.autocrlf settings.
+* -text
+*.rds binary
+*.pdf binary

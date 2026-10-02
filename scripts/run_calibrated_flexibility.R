@@ -1,0 +1,11 @@
+args0<-commandArgs(FALSE);this<-normalizePath(sub("^--file=","",grep("^--file=",args0,value=TRUE)[1]),winslash="/");root<-normalizePath(file.path(dirname(this),".."),winslash="/");lib<-file.path(root,".r-lib");.libPaths(c(lib,.Library));Sys.setenv(R_LIBS_USER=lib,OMP_NUM_THREADS="1",OPENBLAS_NUM_THREADS="1",MKL_NUM_THREADS="1");stage2<-file.path(root,"Stage2");setwd(stage2)
+dir.create(file.path("results","calibrated-flexibility"),recursive=TRUE,showWarnings=FALSE);log<-file.path("results","calibrated-flexibility","run.log");con<-file(log,"at");sink(con);sink(con,type="message");on.exit({sink(type="message");sink();close(con)},add=TRUE)
+rscript<-file.path(R.home("bin"),if (.Platform$OS.type == "windows") "Rscript.exe" else "Rscript");stamp<-function(...)cat(format(Sys.time(),"%Y-%m-%d %H:%M:%S"),sprintf(...),"\n")
+run<-function(script,args=character()){stamp("START %s %s",script,paste(args,collapse=" "));t0<-Sys.time();s<-system2(rscript,c(script,args));stamp("END %s (%.1f min; status %d)",script,as.numeric(difftime(Sys.time(),t0,units="mins")),s);if(s!=0L)stop(script," failed")}
+stamp("CONFIRMATORY CALIBRATED-FLEXIBILITY RUN START")
+run(file.path("..","tests","preflight.R"));run(file.path("..","tests","calflex_seed_audit.R"))
+run("CalFlex_BayesProfile.R")
+run("CalFlex_Banknote.R",c("driver","8"));run("CalFlex_BanknoteAnalysis.R");run("Section5_CellWise05_Figure.R")
+run("CalFlex_PhaseMap.R",c("driver","8"));run("CalFlex_PhaseMapAnalysis.R")
+run(file.path("..","tests","calflex_integrity.R"));run(file.path("..","tests","figure_integrity.R"));run(file.path("..","scripts","write_session_info.R"));run(file.path("..","scripts","write_results_manifest.R"))
+stamp("CONFIRMATORY CALIBRATED-FLEXIBILITY RUN COMPLETE")

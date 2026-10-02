@@ -1,0 +1,41 @@
+R version 4.4.1 (2024-06-14 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
+
+Matrix products: default
+
+
+locale:
+[1] C
+system code page: 65001
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+[1] compiler_4.4.1
+
+Direct package versions:
+Rcpp                 1.1.0
+RcppArmadillo        14.2.3.1
+dplyr                1.1.4
+tibble               3.2.1
+tidyr                1.3.1
+purrr                1.1.0
+ggplot2              4.0.0
+digest               0.6.37
+mclust               6.1.1
+mvtnorm              1.3.3
+sn                   2.1.1
+gclus                1.3.3
+aricode              1.0.3
+remotes              2.5.0
+processx             3.8.6
+MixGHD               2.3.7
+ContaminatedMixt     1.3.8
+EMMIXskew            1.0.3
+EMMIXuskew           0.11.6
+MixSITcore           1.1.0

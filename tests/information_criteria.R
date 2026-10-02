@@ -1,0 +1,35 @@
+args0<-commandArgs(FALSE)
+script<-normalizePath(sub('^--file=','',grep('^--file=',args0,value=TRUE)[1]),winslash='/')
+root<-normalizePath(file.path(dirname(script),'..'),winslash='/')
+setwd(file.path(root,'Stage2'))
+source('00_CONFIG.R');source_stage1();source('Section4_Lib.R')
+source('CalFlex_FormalLib.R');source('Section6_KSelectLib.R')
+for(d in c(1,5,10))for(K in 1:6)
+  stopifnot(count_parameters('MSGHD',K,d)==(K-1)+K*(5*d+d*(d-1)/2),
+    npar_of('MSGHD',K,d)==calflex_npar('MSGHD',K,d))
+z<-rbind(c(1,0),c(.5,.5),c(.2,.8))
+stopifnot(identical(entropy_of(z,3),calflex_entropy(z)),
+  posterior_entropy(matrix(1,3,1),3)==0,
+  is.na(posterior_entropy(matrix(0,3,2),3)))
+set.seed(39201)
+Y<-rbind(matrix(rnorm(80),40,2),matrix(rnorm(80)+4,40,2))
+f<-fit_multistart('MSGHD',Y,2,1,100,tag='CriteriaRegression',rep=1)$fit
+stopifnot(!is.null(f))
+ll<-as.numeric(tail(f@loglik,1));p<-count_parameters('MSGHD',2,2)
+ic<-calc_information_criteria(Y,f,'MSGHD',2,2)
+zz<-model_posterior(f,'MSGHD',nrow(Y),2)
+native<-get('weightsMS',asNamespace('MixGHD'))(data=Y,gpar=f@gpar)
+stopifnot(identical(dim(zz),c(80L,2L)),isTRUE(all.equal(zz,native,tolerance=1e-12)))
+manual<-ic_of(ll,zz,'MSGHD',2,nrow(Y),ncol(Y))
+stopifnot(ic$AIC==-2*ll+2*p,ic$BIC==-2*ll+p*log(nrow(Y)),
+  ic$ICL==ic$BIC+2*posterior_entropy(zz,nrow(Y)),ic$ICL>ic$BIC,
+  identical(ic$ICL,manual$ICL))
+cat('shared actual-block MSGHD criteria and soft ICL tests passed\n')
+Sys.setenv(MIXSIT_TEST_ROOT=root)
+source(file.path(root,'tests','nu_actual_baseline.R'))
+source('Section6_PenaltyLib.R')
+install_penalty('log',5)
+p<-make_params(c(5,5.01));ex<-E_Step_cpp(Y,p)
+a<-CM_Step_Nu(p,ex,0,5,'U')
+stopifnot(identical(a[[1]]$nu,p$components[[1]]$nu))
+cat('installed-penalty actual nu baseline test passed\n')
