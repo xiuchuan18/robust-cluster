@@ -1,0 +1,5 @@
+arg <- grep('^--file=', commandArgs(FALSE), value=TRUE)
+root <- normalizePath(file.path(dirname(sub('^--file=', '', arg)), '..'))
+.libPaths(c(file.path(root,'.r-lib'),.libPaths()))
+setwd(file.path(root,'Stage2','CompetitorExtension'))
+source('code/figures.R')

@@ -25,11 +25,11 @@ tracked aggregate results; no values are edited at the graphics stage.
 
 | Final PDF | Generating script |
 |---|---|
-| `Figure1_ARI_Boxplots.pdf` | `Stage2/Section4_Figures.R` |
-| `Figure2_BIC_Boxplots.pdf` | `Stage2/Section4_Figures.R` |
+| `Figure1_ARI_Boxplots.pdf` | `scripts/render_competitor_figures.R` |
+| `Figure2_BIC_Boxplots.pdf` | `scripts/render_competitor_figures.R` |
 | `Section4_Wbar_Density.pdf` | `Stage2/Section4_WbarAnalysis.R` |
-| `Section5_CellWise05_ARI.pdf` | `Stage2/Section5_CellWise05_Figure.R` |
-| `Section6_Scaling.pdf` | `Stage2/Section6_ScalingFigure.R` |
+| `Section5_CellWise05_ARI.pdf` | `scripts/render_competitor_figures.R` |
+| `Section6_Scaling.pdf` | `scripts/render_competitor_figures.R` |
 | `calibrated-flexibility/CalFlex_PhaseMap.pdf` | `Stage2/CalFlex_PhaseMapAnalysis.R` |
 
 Run `tests/figure_integrity.R` after rendering. It rejects extra files,

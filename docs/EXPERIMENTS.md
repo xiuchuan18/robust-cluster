@@ -37,3 +37,5 @@ unreported selection grids.
 The standalone calibrated-flexibility runner assumes the main simulation and
 three-dataset aggregate results already exist, as they do in this release.
 For complete regeneration use `scripts/run_all.R`, which orders those dependencies.
+
+See the [four-competitor revision](../Stage2/CompetitorExtension/README.md) for initialization, scope, return counts, and the NPICA scoring and timing protocols.

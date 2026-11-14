@@ -101,3 +101,7 @@ machine and fitting protocol, not machine-independent complexity bounds.
 
 The source is GPL-3. Vendored EMMIXskew retains its upstream copyright and license;
 its compatibility changes are described in `vendor/EMMIXskew/PATCHES.md`.
+
+## Four additional competitors
+
+[Experiment guide](Stage2/CompetitorExtension/README.md) and [reported results](Stage2/results/competitor-extension). Rebuild Figures 1, 3, 5 and S1 from the supplied CSVs with Rscript scripts/render_competitor_figures.R.

@@ -40,3 +40,9 @@ if (nzchar(pdfinfo)) {
   }
 }
 cat("figure integrity passed:", length(paths), "information-designed PDFs\n")
+
+rows <- read.csv(file.path(root,'Stage2/results/competitor-extension/simulation_plot_data.csv'))
+stopifnot(nrow(rows)==7800,all(table(rows$method,rows$scenario)==100))
+s <- read.csv(file.path(root,'Stage2/results/competitor-extension/section6.csv'))
+stopifnot(sum(s$section=='scale')==360,sum(s$returned[s$section=='scale'])==350,
+          sum(is.finite(s$angle_deg[s$section=='recovery']))==250)
