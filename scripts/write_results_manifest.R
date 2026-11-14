@@ -155,6 +155,9 @@ paths <- c(
   "vendor/EMMIXskew/src/scaestep.c",
   "vendor/EMMIXskew/src/scamstep.f",
   "vendor/EMMIXskew/src/zeroin.c")
+extra_dirs <- c('Stage2/CompetitorExtension/code','Stage2/CompetitorExtension/validation','Stage2/results/competitor-extension')
+for (d in extra_dirs) paths <- c(paths,file.path(d,list.files(file.path(root,d),recursive=TRUE)))
+paths <- sort(unique(c(paths,'Stage2/CompetitorExtension/README.md','Stage2/CompetitorExtension/ASSET_SHA256SUMS.txt','scripts/render_competitor_figures.R')))
 files <- file.path(root, paths)
 if (any(!file.exists(files))) stop("missing publication files: ",
   paste(paths[!file.exists(files)], collapse=", "))

@@ -16,3 +16,7 @@ Stage2/tmp/
 *.so
 *.dylib
 *.tar.gz
+
+Stage2/CompetitorExtension/archives/
+Stage2/CompetitorExtension/replay/
+Stage2/CompetitorExtension/refits/

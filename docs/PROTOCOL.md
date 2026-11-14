@@ -135,3 +135,5 @@ come from the final safeguarded rerun; unaffected GMM, MSGHD, and EE timings wer
 retained from their original runs under the same stated load. They are not a
 simultaneous paired timing rerun. `t_base / iters` describes the main-loop time
 per recorded iteration; `t_tot` also includes initialization and flip overhead.
+
+See the [four-competitor revision](../Stage2/CompetitorExtension/README.md) for initialization, scope, return counts, and the NPICA scoring and timing protocols.

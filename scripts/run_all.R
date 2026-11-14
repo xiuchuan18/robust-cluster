@@ -66,6 +66,7 @@ for (script in c("Section4_Figures.R", "Section4_WbarAnalysis.R",
 
 run(file.path("..", "tests", "result_integrity.R"))
 run(file.path("..", "tests", "calflex_integrity.R"))
+run(file.path("..", "scripts", "render_competitor_figures.R"))
 run(file.path("..", "tests", "figure_integrity.R"))
 run(file.path("..", "scripts", "write_session_info.R"))
 run(file.path("..", "scripts", "write_results_manifest.R"))

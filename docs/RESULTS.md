@@ -59,3 +59,5 @@ The release retains all existing formal numerical and figure files byte-for-byte
 Five summary CSVs are extracted from the formal aggregates for this code release.
 `MANIFEST.csv` covers publication files only and excludes itself. Running the
 full workflow regenerates it after replacing outputs.
+
+See the [four-competitor revision](../Stage2/CompetitorExtension/README.md) for initialization, scope, return counts, and the NPICA scoring and timing protocols.
